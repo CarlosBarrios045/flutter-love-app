@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Music Player',
+        title: 'CyD',
         home: MusicPlayerPage(),
         theme: myTheme,
         initialRoute: 'home',
