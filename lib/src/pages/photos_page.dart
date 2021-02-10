@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+// Widgets
 import 'package:love_app/src/widgets/custom_appbar.dart';
+
+class _ImagesText {
+  final String text, image;
+
+  _ImagesText(this.text, this.image);
+}
 
 class PhotosPage extends StatelessWidget {
   @override
@@ -9,12 +16,6 @@ class PhotosPage extends StatelessWidget {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.centerLeft, colors: [
-              Colors.purple,
-              Colors.purpleAccent,
-            ]),
-          ),
           child: Stack(
             children: [
               PhotosGrid(),
@@ -30,42 +31,51 @@ class PhotosPage extends StatelessWidget {
 }
 
 class PhotosGrid extends StatelessWidget {
-  final List items = List.generate(200, (i) => i);
+  final List<_ImagesText> images = [
+    _ImagesText('Princesa mía', 'assets/images/image1.jpg'),
+    _ImagesText('¿Quisieras', 'assets/images/image2.jpg'),
+    _ImagesText('Casarte', 'assets/images/image3.jpg'),
+    _ImagesText('Conmigo?', 'assets/images/image4.jpg'),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return StaggeredGridView.countBuilder(
-      crossAxisCount: 2,
-      itemCount: items.length,
-      itemBuilder: (BuildContext context, int index) => _PhotoItem(index),
-      staggeredTileBuilder: (int index) =>
-          StaggeredTile.count(1, index.isEven ? 2 : 3),
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-    );
-  }
-}
+    final size = MediaQuery.of(context).size;
 
-class _PhotoItem extends StatelessWidget {
-  final int index;
-
-  _PhotoItem(this.index);
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-        margin: EdgeInsets.all(6),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
-        child: Center(
-          child: CircleAvatar(
-            backgroundColor: Colors.redAccent,
-            child: Text(
-              '$index',
-              style: TextStyle(color: Colors.white),
-            ),
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemCount: images.length,
+      itemBuilder: (BuildContext context, int i) {
+        final item = images[i];
+        return Container(
+          height: size.height * 0.5,
+          child: Stack(
+            children: [
+              Image(
+                image: AssetImage(item.image),
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: Container(
+                    alignment: Alignment.center,
+                    width: size.width,
+                    height: double.infinity,
+                    child: Text(
+                      item.text,
+                      style: TextStyle(
+                          fontSize: 48.0,
+                          fontFamily: 'Abel',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    )),
+              )
+            ],
           ),
-        ));
+        );
+      },
+    );
   }
 }

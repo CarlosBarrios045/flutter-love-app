@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                   Container(
                       width: double.infinity,
                       child: _createButtonRounded(
-                          color: Colors.red[600],
+                          color: Colors.purple[800],
                           icon: Icons.favorite,
                           text: '¡Te amo muchooo!',
                           onPress: () =>
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     child: _createButtonRounded(
-                        color: Colors.black,
+                        color: Colors.black87,
                         icon: Icons.markunread,
                         text: 'Carta',
                         onPress: () => Navigator.pushNamed(context, 'letter')),
@@ -66,7 +66,7 @@ Widget _buttonsRounded(BuildContext context) {
             text: 'Fotos',
             onPress: () => Navigator.pushNamed(context, 'photos')),
         _createButtonRounded(
-            color: Colors.purple[800],
+            color: Colors.pink,
             icon: Icons.headset_outlined,
             text: 'Canción',
             onPress: () => Navigator.pushNamed(context, 'music')),
@@ -78,7 +78,7 @@ Widget _buttonsRounded(BuildContext context) {
             text: 'Girasol',
             onPress: () => Navigator.pushNamed(context, 'sunflower')),
         _createButtonRounded(
-            color: Colors.pink,
+            color: Colors.indigo,
             icon: Icons.movie_filter,
             text: 'Vídeo',
             onPress: () => Navigator.pushNamed(context, 'video')),
