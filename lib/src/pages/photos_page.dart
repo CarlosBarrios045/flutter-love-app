@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:love_app/src/widgets/custom_appbar.dart';
 
 class _ImagesText {
-  final String text, image;
+  String text, image;
 
-  _ImagesText(this.text, this.image);
+  _ImagesText({@required this.text, this.image});
 }
 
 class PhotosPage extends StatelessWidget {
@@ -32,10 +32,10 @@ class PhotosPage extends StatelessWidget {
 
 class PhotosGrid extends StatelessWidget {
   final List<_ImagesText> images = [
-    _ImagesText('Princesa mía', 'assets/images/image1.jpg'),
-    _ImagesText('¿Quisieras', 'assets/images/image2.jpg'),
-    _ImagesText('Casarte', 'assets/images/image3.jpg'),
-    _ImagesText('Conmigo?', 'assets/images/image4.jpg'),
+    _ImagesText(text: 'Princesa mía', image: 'assets/images/image1.jpg'),
+    _ImagesText(text: '¿Quisieras', image: 'assets/images/image2.jpg'),
+    _ImagesText(text: 'Casarte', image: 'assets/images/image3.jpg'),
+    _ImagesText(text: 'Conmigo?', image: 'assets/images/image4.jpg'),
   ];
 
   @override
@@ -51,12 +51,6 @@ class PhotosGrid extends StatelessWidget {
           height: size.height * 0.5,
           child: Stack(
             children: [
-              Image(
-                image: AssetImage(item.image),
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-              ),
               MaterialButton(
                 onPressed: () {},
                 child: Container(
@@ -71,7 +65,31 @@ class PhotosGrid extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     )),
-              )
+              ),
+              if (item.image != null)
+                Dismissible(
+                  onDismissed: (direction) {
+                    item.image = null;
+                  },
+                  key: UniqueKey(),
+                  child: Stack(
+                    children: [
+                      Image(
+                        image: AssetImage(item.image),
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
+                      MaterialButton(
+                        onPressed: () {},
+                        child: Container(
+                          width: size.width,
+                          height: double.infinity,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
             ],
           ),
         );
