@@ -45,7 +45,6 @@ class _ChewieDemoState extends State<VideoPlayerScreen> {
       autoPlay: true,
       allowPlaybackSpeedChanging: false,
       allowMuting: false,
-      fullScreenByDefault: true,
       // Try playing around with some of these other options:
 
       // showControls: false,
